@@ -10,8 +10,29 @@ import Default from './Routes/Default';
 
 function App() {
 
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+      fakeRequest().then(() => {
+        const el = document.querySelector(".preloader");
+        
+        if (el) {
+          el.remove();  // removing the spinner element
+          setLoading(true); // showing the app
+        }
+      });
+  }, [loading]); 
+
+  const fakeRequest = () => {
+    return new Promise(resolve => setTimeout(() => resolve(), 0));
+  };
+
+  if(!loading) {
+    return null
+  } 
+
   return (
-    <>      
+    <>     
       <Routes>
         <Route exact path='/' element={<Home/>} />
         <Route path='/about' element={<AboutUs/>} />
