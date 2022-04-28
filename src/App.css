@@ -121,6 +121,36 @@ body{
   }
 }
 
+@media (max-width: 320px) { 
+  .main,.under{
+    top: 6.5rem !important;
+  }
+  .text-carousel-product{
+    position: absolute;
+    top: 3% !important;
+  }
+  .baner-body .arrow-right, .baner-body .arrow-left{
+    width: 1.4rem !important;
+  }
+  .about-card-body h1{
+    font-size: 1.4rem;
+  }
+  .about-card-body p{
+    font-size: 0.7rem !important;
+  }
+  .video-text h1{
+    font-size: 1.8rem !important;
+    padding-left: 2rem !important;
+  }
+  .video-text p{
+    font-size: 0.8rem !important;
+  }
+  .video-container .video-text{
+    position: absolute;
+    bottom: 6% !important;
+  }
+}
+
 /*Citat*/
 .citat{
   background-color: var(--lightGrey);
@@ -371,7 +401,7 @@ body{
 @media (max-width: 375px) { 
   .text-carousel{
     position: absolute;
-    top: 4% !important;
+    top: 3% !important;
     font-size: 0.9rem !important;
   }
 }
@@ -856,6 +886,45 @@ body{
   }
 }
 
+@media (max-height: 600px) { 
+  .about-left p{
+    font-size: 0.8rem !important;
+  }
+  .about-left h1{
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-height: 720px) { 
+  .about-left p{
+    font-size: 0.8rem !important;
+  }
+  .about-left h1{
+    font-size: 2rem !important;
+  }
+  .video-text h1{
+    font-size: 2.5rem;
+    padding-left: 3rem;
+  }
+  .video-text p{
+    font-size: 1.2rem;
+  }
+  .video-container .video-text{
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 280px) { 
+  .about-left p{
+    font-size: 0.6rem !important;
+  }
+  .about-left h1{
+    font-size: 1.4rem !important;
+  }
+}
+
 .about-space{
   padding: 3rem 0 7rem 0;
 }
@@ -922,7 +991,7 @@ body{
 }
 
 .about-card{
-  height: 35vh;
+  min-height: 35vh;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;

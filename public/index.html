@@ -44,6 +44,43 @@
         align-items: center;
       }
 
+      @media (max-width: 660px) { 
+        .preloader-body h1{
+          font-size: 5rem !important;
+        }
+        .preloader-body{
+          height: 20vh !important;
+        }
+      }
+
+      @media (max-width: 460px) { 
+        .preloader-body h1{
+          font-size: 3rem !important;
+        }
+        .spinner > div {
+          width: 15px !important;
+          margin: 0.1rem !important;
+          height: 15px !important;
+        }
+        .preloader-body{
+          height: 15vh !important;
+        }
+      }
+
+      @media (max-width: 260px) { 
+        .preloader-body h1{
+          font-size: 2rem !important;
+        }
+        .spinner > div {
+          width: 10px !important;
+          margin: 0.1rem !important;
+          height: 10px !important;
+        }
+        .preloader-body{
+          height: 10vh !important;
+        }
+      }
+
       .preloader-body h1{
         font-size: 8rem;
         font-family: 'DM Serif Display', serif;
