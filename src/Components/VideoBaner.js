@@ -1,0 +1,16 @@
+import React from 'react';
+import kratke from '../Videos/kratke.mp4';
+
+export default function VideoBaner() {
+	return (
+		<div className='video-container container'>
+			<video autoPlay muted loop>
+				<source src={kratke} type='video/mp4'/>
+			</video>
+			<div className='video-text'>
+				<p>Svadobný salón</p>
+				<h1>la novia</h1>
+			</div>
+		</div>
+	)
+}
