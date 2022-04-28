@@ -19,7 +19,7 @@ export default function VideoBaner() {
 
 	return (
 		<div className='video-container container'>
-			<video autoPlay muted loop controls='' playsInline  preload="auto" ref={videoEl}>
+			<video loop={true} muted={true} controls autoplay={true} playsinline={true} ref={videoEl}>
 				<source src={kratke} type='video/mp4'/>
 				Your browser does not support the video tag.
 			</video>
