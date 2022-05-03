@@ -30,14 +30,14 @@ export default function AboutUs() {
 	    	{opacity: 1, x: 0, duration: 0.5, delay: 1.5}     
 	    );
 	    TweenMax.to(qAbout(".bi-geo-alt"), 0.1, 
-	    	{x:"-=5", yoyo:true, repeat:5,
+	    	{x:"-=5", yoyo:true, repeat:5, delay: 1,
 		    	scrollTrigger: {
 			        trigger: ".bi-geo-alt"
 			    }
 			}
 		);
 		TweenMax.to(qAbout(".bi-telephone"), 0.1, 
-	    	{y:"-=5", yoyo:true, repeat:5, delay: 0.5,
+	    	{y:"-=5", yoyo:true, repeat:5, delay: 1.5,
 		    	scrollTrigger: {
 			        trigger: ".bi-telephone"
 			    }

@@ -39,9 +39,7 @@ export default function CardCarousel(props) {
 		if(props.className === 'container-carousel'){
 			gsap.fromTo(qCarousel(".container-carousel"), 
 	    	{opacity: 0, x: -50}, 
-	    	{
-	    		opacity: 1, 
-	    		x: 0, duration: 1, 
+	    	{opacity: 1, x: 0, duration: 1, 
 	    		scrollTrigger: {
 		        trigger: ".container-carousel"
 		      }
@@ -52,9 +50,7 @@ export default function CardCarousel(props) {
 		if(props.className === 'carousel-product'){
 			gsap.fromTo(qCarousel(".carousel-product"), 
 	    	{opacity: 0, x: -50}, 
-	    	{
-	    		opacity: 1, 
-	    		x: 0, duration: 1, 
+	    	{opacity: 1, x: 0, duration: 1, 
 	    		scrollTrigger: {
 		        trigger: ".carousel-product"
 		      }
@@ -65,9 +61,7 @@ export default function CardCarousel(props) {
 		if(props.textStyle === 'text-carousel'){
 	    gsap.fromTo(qCarousel(".text-carousel"), 
 	    	{opacity: 0, x: -50}, 
-	    	{
-	    		opacity: 1, 
-	    		x: 0, duration: 1, 
+	    	{opacity: 1, x: 0, duration: 1, 
 	    		scrollTrigger: {
 		        trigger: ".container-carousel"
 		      }
@@ -78,9 +72,7 @@ export default function CardCarousel(props) {
 	  if(props.textStyle === 'text-carousel-product'){
 	    gsap.fromTo(qCarousel(".text-carousel-product"), 
 	    	{opacity: 0, x: -50}, 
-	    	{
-	    		opacity: 1, 
-	    		x: 0, duration: 1, 
+	    	{opacity: 1, x: 0, duration: 1, 
 	    		scrollTrigger: {
 		        trigger: ".carousel-product"
 		      }

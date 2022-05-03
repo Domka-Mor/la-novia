@@ -31,8 +31,9 @@ export default function Navbar(props) {
 		return () => {
 	        window.removeEventListener('scroll', controlNavbar);
 	    };	  
+	   
 	}, [prevScrollpos, open]);
-
+ 		
 	useEffect(() => {
 	    if(props.navCenter || props.navLeft){
 	    	gsap.fromTo(q1("a"), {opacity: 0, x: -100}, {opacity: 1, x: 0, duration: 1});
@@ -51,6 +52,13 @@ export default function Navbar(props) {
 	   		gsap.fromTo(q3(".lanovia-logo"), {opacity: 0, x: -100}, {opacity: 1, x: 0, duration: 1.5});
 	   	}
 	}, []);
+
+	if(props.navHidden && open){
+   		var navItems = gsap.utils.toArray(q3('.ul-hidden a'));
+    	navItems.forEach((item,i) => {
+			gsap.fromTo(item, {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.5, delay: `${i/2}`});			  
+		})
+   	}
 
 	const handleToggle = () => {
 		setOpen(!open);

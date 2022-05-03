@@ -325,11 +325,6 @@ body{
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
-  transition: all 0.3s linear;
-}
-
-.baner-button:hover{
-  transform: scale(1.05);
 }
 
 .baner-text p{
@@ -690,6 +685,7 @@ body{
   padding: 0;
   position: relative;
   display: flex;
+  overflow: hidden;
 }
 
 .productPhoto img{
@@ -738,7 +734,7 @@ body{
 }
 
 .photoWraper .productPhoto:nth-child(1) {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1 / span 3;
 }
 

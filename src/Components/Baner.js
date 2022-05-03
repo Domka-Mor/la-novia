@@ -1,15 +1,41 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useRef} from 'react';
 import Skeleton from './Skeleton';
 import {Link} from 'react-router-dom';
 import baner4 from '../Images/Sofi/Sofi1.jpg';
 import baner1 from '../Images/Banner/baner6.jpg';
 import baner2 from '../Images/Banner/baner9.jpg';
 import baner3 from '../Images/Banner/baner4.jpg';
+import {gsap} from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 export default function Baner() {
 
+	gsap.registerPlugin(ScrollTrigger);
+	const baner = useRef();
+	const qBaner = gsap.utils.selector(baner);
+
 	const banerImages = [baner1,baner2,baner3,baner4];
 	const [imageToShow, setImageToShow] = useState(banerImages[0]);
+
+	useEffect(() => {	
+		gsap.fromTo(qBaner("p"), 
+	    	{opacity: 0, y: -50}, 
+	    	{opacity: 1, y: 0, duration: 1, 
+				scrollTrigger: {
+		        	trigger: ".baner-body"
+		    	}
+		    }     
+	    );
+	    gsap.fromTo(qBaner(".baner-button"), 
+	    	{opacity: 0, y: -25}, 
+	    	{opacity: 1, y: 0, duration: 1, delay: 0.5, 
+				scrollTrigger: {
+		        	trigger: ".baner-body"
+		    	}
+		    }     
+	    );
+  	}, []);
 
 	useEffect(() => {
 
@@ -42,7 +68,7 @@ export default function Baner() {
 	}
 
 	return (
-		<div className='baner-show'>
+		<div className='baner-show' ref={baner}>
 			<div className='baner-body container'>
 				<div className='baner-img'>{HandleImage}</div>
 				<div className='baner-text'>
