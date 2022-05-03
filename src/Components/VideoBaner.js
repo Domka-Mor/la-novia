@@ -26,18 +26,10 @@ export default function VideoBaner() {
 			</div>
 
 			<div className='video-container container d-block d-sm-none'>
-				<div dangerouslySetInnerHTML={{ __html: `
-			        <video
-			          loop
-			          autoPlay
-			          playsInline
-			        >
-				        <source src=${kratke} type="video/mp4" />
-				        Your browser does not support the video tag.
-			        </video>
-			        `}}>		      	
-			    </div>
-
+			    <video controls loop playsInline>
+				    <source src={kratke} type="video/mp4">
+				    Sorry, your browser doesn't support embedded videos.
+				</video>
 				<div className='video-text'>
 					<p>Svadobný salón</p>
 					<h1>la novia</h1>
