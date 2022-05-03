@@ -1,28 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import kratke from '../Videos/kratke.mp4';
 
 export default function VideoBaner() {
 
-	const videoEl = useRef(null);
-
-	const attemptPlay = () => {
-	    videoEl &&
-    	videoEl.current &&
-      	videoEl.current.play().catch(error => {
-        	console.error("Error attempting to play", error);
-    	});
-	};
-
-	useEffect(() => {
-	    attemptPlay();
-	}, []);
-
 	return (
 		<div className='video-container container'>
-			<video loop={true} muted={true} controls autoplay={true} playsinline={true} ref={videoEl}>
-				<source src={kratke} type='video/mp4'/>
-				Your browser does not support the video tag.
-			</video>
+			<div dangerouslySetInnerHTML={{ __html: `
+		        <video
+		          loop
+		          muted
+		          autoplay
+		          playsinline
+		          src="${kratke}"
+		        />,` }}>		      	
+		    </div>
+
 			<div className='video-text'>
 				<p>Svadobný salón</p>
 				<h1>la novia</h1>
