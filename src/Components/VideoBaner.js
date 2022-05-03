@@ -11,8 +11,11 @@ export default function VideoBaner() {
 		          muted
 		          autoPlay
 		          playsInline
-		          src="${kratke}"
-		        />,` }}>		      	
+		        >
+			        <source src=${kratke} type="video/mp4" />
+			        Your browser does not support the video tag.
+		        </video>
+		        `}}>		      	
 		    </div>
 
 			<div className='video-text'>
