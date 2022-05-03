@@ -26,7 +26,7 @@ export default function VideoBaner() {
 			</div>
 
 			<div className='video-container container d-block d-sm-none'>
-			    <video controls loop playsInline>
+			    <video controls>
 				    <source src={kratke} type="video/mp4">
 				    Sorry, your browser doesn't support embedded videos.
 				</video>
