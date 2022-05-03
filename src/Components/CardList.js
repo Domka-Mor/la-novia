@@ -1,11 +1,22 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import Card from './Card';
 import {PhotoContext} from '../context';
+import { gsap } from "gsap";
+
 
 export default function CardList() {
 
+	const galery = useRef();
+
 	const context = useContext(PhotoContext);
 	let {photos} = context;
+
+	useEffect(() => {
+	    gsap.fromTo(".cardList", 
+	    	{opacity: 0, x: -50}, 
+	    	{opacity: 1, x: 0, duration: 1}     
+	    );
+	}, []);
 
 	if(photos && photos.length !== 0){
 		photos = photos.map((photo,index) => 
@@ -19,7 +30,7 @@ export default function CardList() {
 	}
 
 	return (
-		<div className='cardList container'>			
+		<div className='cardList container' ref={galery}>			
 			{photos}
 		</div>
 	)

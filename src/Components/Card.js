@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useState}  from 'react';
 import {PhotoContext} from '../context';
 import {Link} from 'react-router-dom';
 import Skeleton from './Skeleton';
+import { gsap } from "gsap";
+
 
 export default function Card({photo}) {
 

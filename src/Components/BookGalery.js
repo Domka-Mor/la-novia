@@ -1,13 +1,19 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect, useContext, useRef} from 'react';
 import {PhotoContext} from '../context';
 import {Link} from 'react-router-dom';
 import Skeleton from './Skeleton';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 export default function BookGalery() {
 	
 	const context = useContext(PhotoContext);
 	const {photos} = context;
+
+	gsap.registerPlugin(ScrollTrigger);
+	const bookGalery = useRef();
+	const qBookGalery = gsap.utils.selector(bookGalery);
 
 	const names = photos.map(photo => photo.name);
 	const mainImages = photos.map(photo => photo.photos[0]);
@@ -21,6 +27,43 @@ export default function BookGalery() {
 	useEffect(() => {
 
 	}, [imageToShow,slidesToShow,satyToShow]); 
+
+	useEffect(() => {
+
+	    gsap.fromTo(qBookGalery(".book-logo"), 
+	    	{opacity: 0, x: -50}, 
+	    	{
+	    		opacity: 1, 
+	    		x: 0, duration: 1, 
+	    		scrollTrigger: {
+		        trigger: ".book-logo"
+		      }
+		    }     
+	    );
+
+	    gsap.fromTo(qBookGalery(".book-card"), 
+	    	{opacity: 0, x: -50}, 
+	    	{
+	    		opacity: 1, 
+	    		x: 0, duration: 1, 
+	    		scrollTrigger: {
+		        trigger: ".book-card",
+		        start: "top center"
+		      }
+		    }     
+	    );
+
+	    gsap.fromTo(qBookGalery(".book-card-footer"), 
+	    	{opacity: 0, x: -50}, 
+	    	{
+	    		opacity: 1, 
+	    		x: 0, duration: 1, 
+	    		scrollTrigger: {
+		        trigger: ".book-card-footer"
+		      }
+		    }     
+	    );
+	}, []);
 
 	const goNext = (e) => {
 		e.stopPropagation();
@@ -61,7 +104,7 @@ export default function BookGalery() {
 	}
 
 	return (
-		<div className='bookGalery-main'>
+		<div className='bookGalery-main' ref={bookGalery}>
 			<div className='bookGalery-left'>
 				<li className='book-logo'>
 					La Novia

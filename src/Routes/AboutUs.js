@@ -1,24 +1,62 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Navbar from '../Components/Navbar';
 import VideoBaner from '../Components/VideoBaner';
 import Footer from '../Components/Footer';
 import nevesta from '../Images/Pozadia/nevesta.jpg';
-
+import { gsap, TweenMax } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function AboutUs() {
+
+	gsap.registerPlugin(ScrollTrigger);
+	const about = useRef();
+	const qAbout = gsap.utils.selector(about);
+
+	useEffect(() => {
+	    gsap.fromTo(qAbout("#h1"), 
+	    	{opacity: 0, x: -50}, 
+	    	{opacity: 1, x: 0, duration: 1}     
+	    );
+	    gsap.fromTo(qAbout("#p1"), 
+	    	{opacity: 0, x: -50}, 
+	    	{opacity: 1, x: 0, duration: 0.5, delay: 0.5}     
+	    );
+	    gsap.fromTo(qAbout("#p2"), 
+	    	{opacity: 0, x: -50}, 
+	    	{opacity: 1, x: 0, duration: 0.5, delay: 1}     
+	    );
+	    gsap.fromTo(qAbout("#p3"), 
+	    	{opacity: 0, x: -50}, 
+	    	{opacity: 1, x: 0, duration: 0.5, delay: 1.5}     
+	    );
+	    TweenMax.to(qAbout(".bi-geo-alt"), 0.1, 
+	    	{x:"-=5", yoyo:true, repeat:5,
+		    	scrollTrigger: {
+			        trigger: ".bi-geo-alt"
+			    }
+			}
+		);
+		TweenMax.to(qAbout(".bi-telephone"), 0.1, 
+	    	{y:"-=5", yoyo:true, repeat:5, delay: 0.5,
+		    	scrollTrigger: {
+			        trigger: ".bi-telephone"
+			    }
+			}
+		);
+	}, []);
 
 	return (
 		<>	
 			<Navbar navCenter navHidden/>
-			<div className='main'>
+			<div className='main' ref={about}>
 				<div className='container about-space'>	
 					<div className='d-flex row rowCols'>
 						<div className='col'>
-							<div className='about-left'>
-								<h1>O nás</h1>
-								<p>Počas svojho veľkého dňa si každá nevesta zaslúži mať na sebe okrem úsmevu aj tie najkrajšie svadobné šaty.</p>
-								<p>S ich výberom Vám pomôžeme v našom salóne. Váš veľký deň budeme prežívať s Vami a veľmi radi Vám poradíme a pomôžeme.</p>
-								<p>S úsmevom sa tešíme na Vašu návštevu.</p>
+							<div className='about-left' >
+								<h1 id='h1'>O nás</h1>
+								<p id='p1'>Počas svojho veľkého dňa si každá nevesta zaslúži mať na sebe okrem úsmevu aj tie najkrajšie svadobné šaty.</p>
+								<p id='p2'>S ich výberom Vám pomôžeme v našom salóne. Váš veľký deň budeme prežívať s Vami a veľmi radi Vám poradíme a pomôžeme.</p>
+								<p id='p3'>S úsmevom sa tešíme na Vašu návštevu.</p>
 							</div>
 						</div>
 						<div className='col'>

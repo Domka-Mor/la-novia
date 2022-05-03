@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect, useContext, useRef} from 'react';
 import {PhotoContext} from '../context';
 import Navbar from '../Components/Navbar';
 import Backdrop from '../Components/Backdrop';
@@ -6,6 +6,8 @@ import Modal from '../Components/Modal';
 import Skeleton from '../Components/Skeleton';
 import CardCarousel from '../Components/CardCarousel';
 import {useNavigate} from 'react-router-dom';
+import { gsap, TweenMax } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 const responsive = {
@@ -33,6 +35,12 @@ const responsive = {
 
 export default function Product() {
 
+	gsap.registerPlugin(ScrollTrigger);
+	const product1 = useRef();
+	const qProduct1= gsap.utils.selector(product1);
+	const product2 = useRef();
+	const qProduct2= gsap.utils.selector(product2);
+
 	const [modalOpen, setModalOpen] = useState(false);
 	const [imageToShow, setImageToShow] = useState(null);
 
@@ -51,6 +59,60 @@ export default function Product() {
     setImageToShow(photo.src);
     setModalOpen(true);	   
 	};
+
+	useEffect(() => {
+    gsap.fromTo(qProduct1("#h1"), 
+    	{opacity: 0, x: -50}, 
+    	{opacity: 1, x: 0, duration: 1}     
+    );
+		var cards = gsap.utils.toArray(qProduct1('#photo'));
+    cards.forEach((card,index) => {
+			gsap.fromTo(card, {opacity: 0, x: -50}, {opacity: 1, x: 0, duration: 1,delay: `${index}`});			  
+		})
+    TweenMax.to(qProduct1(".bi-telephone"), 0.1, 
+    	{x:"-=5", yoyo:true, repeat:5, delay: 1,
+	    	scrollTrigger: {
+		        trigger: ".bi-telephone"
+		    }
+			}
+		);
+		TweenMax.to(qProduct1(".bi-geo-alt"), 0.1, 
+    	{x:"-=5", yoyo:true, repeat:5, delay: 2,
+	    	scrollTrigger: {
+		        trigger: ".bi-geo-alt"
+		    }
+			}
+		);
+	}, []);
+
+	useEffect(() => {
+    gsap.fromTo(qProduct2("#h1"), 
+    	{opacity: 0, x: -50}, 
+    	{opacity: 1, x: 0, duration: 1}     
+    );
+    gsap.fromTo(qProduct2("#p"), 
+    	{opacity: 0, x: -50}, 
+    	{opacity: 1, x: 0, duration: 0.5, delay: 1}     
+    );
+    var cards = gsap.utils.toArray(qProduct2('#photo'));
+    cards.forEach((card,index) => {
+			gsap.fromTo(card, {opacity: 0, x: -50}, {opacity: 1, x: 0, duration: 1, delay: 1.5});			  
+		})
+    TweenMax.to(qProduct2(".bi-telephone"), 0.1, 
+    	{x:"-=5", yoyo:true, repeat:5, delay: 2.5,
+	    	scrollTrigger: {
+		        trigger: ".bi-telephone"
+		    }
+			}
+		);
+		TweenMax.to(qProduct2(".bi-geo-alt"), 0.1, 
+    	{x:"-=5", yoyo:true, repeat:5, delay: 3,
+	    	scrollTrigger: {
+		        trigger: ".bi-geo-alt"
+		    }
+			}
+		);
+	}, []);
 
 	const goNext = (e) => {
 		e.stopPropagation();
@@ -89,7 +151,7 @@ export default function Product() {
 
 	if(cardImages && cardImages.length !== 0){
 		cardImages = cardImages.map((photo,index) => 
-    	<div className='productPhoto' key={index}>
+    	<div className='productPhoto' key={index} id='photo'>
     		{photo && photo.length !== 0 ? 
     			<img src={photo.src} srcSet={photo.srcset} alt={photo.name} onClick={() => showImage(photo)}/>
     			:
@@ -106,7 +168,7 @@ export default function Product() {
 			<div className='main'>	
 
 				<div className='d-none d-md-block'>
-					<div className='container'>
+					<div className='container' ref={product1}>
 						<div className='d-flex row'>
 							<div className='col'>
 								<div className='photoWraper'>
@@ -115,10 +177,10 @@ export default function Product() {
 							</div>
 							<div className='col'>
 								<div className='textWraper'>
-									<h1>{cardName}</h1>
+									<h1 id='h1'>{cardName}</h1>
 									<p>Rezervujte si skúšku šiat už dnes.</p>
 									<p>Staňte sa vo svoj veľký deň výnimočnou.</p>
-									<p>Bližšie informácie v salóne.</p>		
+									<p>Bližšie informácie v salóne.</p>	
 									<div className='product-kontakt mt-5'>									
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-telephone" viewBox="0 0 16 16">
 											<path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
@@ -132,8 +194,8 @@ export default function Product() {
 										</svg>
 										<p>Moyzesova 36, Košice</p>
 									</div>
-									<div className='arrow-product'>
-										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16" onClick={() => navigate(-1)}>
+									<div className='arrow-product' onClick={() => navigate(-1)}>
+										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
 											<path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
 										</svg>
 										<p>Späť</p>
@@ -145,14 +207,16 @@ export default function Product() {
 				</div>
 
 				<div className='d-md-none'>
-					<div className='container'>
+					<div className='container' ref={product2}>
 						<div className='d-flex row'>
 							<div className='col'>
 								<div className='textWraper'>
-									<h1>{cardName}</h1>
-									<p>Rezervujte si skúšku šiat už dnes.</p>
-									<p>Staňte sa vo svoj veľký deň výnimočnou.</p>
-									<p>Bližšie informácie v salóne.</p>		
+									<h1 id='h1'>{cardName}</h1>
+									<div id='p'>
+										<p>Rezervujte si skúšku šiat už dnes.</p>
+										<p>Staňte sa vo svoj veľký deň výnimočnou.</p>
+										<p>Bližšie informácie v salóne.</p>	
+									</div>		
 									<div className='product-kontakt mt-4'>									
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-telephone" viewBox="0 0 16 16">
 											<path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
@@ -166,8 +230,8 @@ export default function Product() {
 										</svg>
 										<p>Moyzesova 36, Košice</p>
 									</div>
-									<div className='arrow-product'>
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16" onClick={() => navigate(-1)}>
+									<div className='arrow-product' onClick={() => navigate(-1)}>
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
 											<path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
 										</svg>
 										<p>Späť</p>
