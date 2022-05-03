@@ -3,6 +3,7 @@ import {PhotoContext} from '../context';
 import Navbar from '../Components/Navbar';
 import Backdrop from '../Components/Backdrop';
 import Modal from '../Components/Modal';
+import Skeleton from '../Components/Skeleton';
 import CardCarousel from '../Components/CardCarousel';
 import {useNavigate} from 'react-router-dom';
 
@@ -45,8 +46,7 @@ export default function Product() {
 		 	navigate("../galery", { replace: true })
 		}
 	}, [imageToShow,modalOpen]); 
-	
-	
+
 	const showImage = (photo) => {
     setImageToShow(photo.src);
     setModalOpen(true);	   
@@ -90,10 +90,15 @@ export default function Product() {
 	if(cardImages && cardImages.length !== 0){
 		cardImages = cardImages.map((photo,index) => 
     	<div className='productPhoto' key={index}>
-    		<img src={photo.src} srcSet={photo.srcset} alt={photo.name} onClick={() => showImage(photo)}/>
+    		{photo && photo.length !== 0 ? 
+    			<img src={photo.src} srcSet={photo.srcset} alt={photo.name} onClick={() => showImage(photo)}/>
+    			:
+    			<Skeleton/>
+    		}
     	</div>
     )
 	}
+
 
 	return (
 		<>
@@ -193,7 +198,7 @@ export default function Product() {
 					goBack={goBack}
 					imageToShow={imageToShow}
 				/>                
-            )}
+      )}
 		</>
 	)
 }
