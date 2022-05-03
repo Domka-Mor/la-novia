@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import kratke from '../Videos/kratke.mp4';
 
 export default function VideoBaner() {
+
+	useEffect(() => {
+        var promise = document.querySelector('video').play();
+
+        if (promise !== undefined) {
+		  promise.then(
+			console.log('Autoplay started!')
+		  ).catch(error => {
+		    console.log('Autoplay failed!')
+		  });
+		}
+    },[])
 
 	return (
 		<>
@@ -26,11 +38,11 @@ export default function VideoBaner() {
 			</div>
 
 			<div className='video-container container d-block d-sm-none'>
-			    <video controls>
+			    <video autoPlay playsInline muted>
 				    <source src={kratke} type="video/mp4"/>
 				    Sorry, your browser doesn't support embedded videos.
 				</video>
-				<div className='video-text'>
+				<div>
 					<p>Svadobný salón</p>
 					<h1>la novia</h1>
 				</div>
