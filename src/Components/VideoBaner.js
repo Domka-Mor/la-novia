@@ -9,8 +9,8 @@ export default function VideoBaner() {
 		        <video
 		          loop
 		          muted
-		          autoplay
-		          playsinline
+		          autoPlay
+		          playsInline
 		          src="${kratke}"
 		        />,` }}>		      	
 		    </div>
