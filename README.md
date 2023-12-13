@@ -1,5 +1,5 @@
-# This is a custom website for wedding salon located in Košice, Slovakia.
-![](src/Readme/bridal2.png)
+# Custom website for wedding salon located in Košice, Slovakia.
+![](src/Readme/bridal3.png)
 
 ### Type : Front-End Application
 
@@ -10,4 +10,4 @@
 * gsap
 
 ### 1. Smooth scrolling, component's reveal on scroll and custom carousels for better UI/UX experience.
-![](src/Readme/bridal3.png)
+![](src/Readme/bridal2.png)
